@@ -1,0 +1,434 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Configuración del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carlos Ruiz: electrónica, desarrollo de software, tecnología y aventuras.">
+    <meta name="theme-color" content="#101923">
+
+    <title>Carlos Ruiz | Tecnología y aventuras</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icono de la pestaña -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E%F0%9F%A7%AD%3C/text%3E%3C/svg%3E">
+
+    <!-- JavaScript: defer permite cargar el HTML primero -->
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Enlace de accesibilidad para saltar la navegación -->
+    <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+    <!-- Cabecera y navegación -->
+    <header class="cabecera" id="inicio">
+        <nav class="navegacion contenedor" aria-label="Navegación principal">
+
+            <a class="marca" href="#inicio" aria-label="Carlos Ruiz, inicio">
+                CR<span>.</span>
+            </a>
+
+            <button class="menu-toggle" type="button"
+                aria-expanded="false"
+                aria-controls="menu"
+                aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+            </button>
+
+            <ul class="menu" id="menu">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#proyectos">Mi camino</a></li>
+                <li><a href="#aficiones">Aficiones</a></li>
+                <li><a href="#objetivo">Mi próximo nivel</a></li>
+                <li><a class="enlace-contacto" href="#contacto">Contacto ↗</a></li>
+            </ul>
+
+        </nav>
+
+        <!-- Presentación principal -->
+        <section class="hero contenedor">
+            <div class="hero-texto">
+                <p class="sobretitulo">
+                    <span class="punto"></span>
+                    TÉCNICO ELECTRÓNICO · FUTURO DESARROLLADOR
+                </p>
+
+                <h1>
+                    Soy Carlos.<br>
+                    <span>Me gusta crear</span><br>
+                    cosas que funcionan.
+                </h1>
+
+                <p class="hero-descripcion">
+                    Entre circuitos, código y nuevas ideas.
+                    Con mentalidad de técnico, curiosidad de explorador
+                    y ganas de construir mi propio camino digital.
+                </p>
+
+                <div class="hero-botones">
+                    <a class="boton boton-principal" href="#sobre-mi">
+                        Explora mi mundo <span aria-hidden="true">↓</span>
+                    </a>
+                    <a class="boton boton-secundario" href="#objetivo">
+                        Hacia dónde voy ↗
+                    </a>
+                </div>
+
+                <p class="hero-nota">
+                    <span aria-hidden="true">📍</span>
+                    IES Simarro · 1.º DAM
+                </p>
+            </div>
+
+            <!-- Ilustración decorativa hecha con CSS -->
+            <div class="hero-visual" aria-hidden="true">
+                <div class="orbita orbita-externa"></div>
+                <div class="orbita orbita-interna"></div>
+
+                <div class="brujula">
+                    <span class="brujula-norte">N</span>
+                    <span class="brujula-este">E</span>
+                    <span class="brujula-sur">S</span>
+                    <span class="brujula-oeste">O</span>
+                    <div class="aguja"></div>
+                    <div class="centro-aguja"></div>
+                </div>
+
+                <div class="etiqueta-flotante etiqueta-tech">
+                    <span>⌘</span> TECNOLOGÍA
+                </div>
+
+                <div class="etiqueta-flotante etiqueta-aventura">
+                    <span>✦</span> ESPÍRITU EXPLORADOR
+                </div>
+
+                <div class="coordenadas">
+                    CURIOSIDAD: INFINITA<br>
+                    DESTINO: POR DESCUBRIR
+                </div>
+            </div>
+        </section>
+
+        <!-- Banda de especialidades -->
+        <div class="banda">
+            <div class="contenedor banda-contenido">
+                <span>ELECTRÓNICA</span>
+                <span aria-hidden="true">✳</span>
+                <span>PROGRAMACIÓN</span>
+                <span aria-hidden="true">✳</span>
+                <span>IMPRESIÓN 3D</span>
+                <span aria-hidden="true">✳</span>
+                <span>AVENTURAS</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main id="contenido">
+
+        <!-- Presentación personal -->
+        <section class="seccion contenedor" id="sobre-mi">
+            <div class="encabezado-seccion">
+                <p class="sobretitulo">01 / QUIÉN SOY</p>
+                <h2>Experiencia real.<br><span>Nuevos horizontes.</span></h2>
+            </div>
+
+            <div class="sobre-grid">
+                <div class="sobre-texto">
+                    <p class="texto-destacado">
+                        Soy Carlos Ruiz de Lope Clement, técnico electrónico
+                        y estudiante de Desarrollo de Aplicaciones
+                        Multiplataforma en el IES Simarro.
+                    </p>
+
+                    <p>
+                        Trabajo en Maf Roda, una empresa dedicada a fabricar
+                        maquinaria para el volcado, tratamiento, calibrado
+                        y confección de fruta. Mi día a día está ligado a la
+                        electrónica industrial, la tecnología y la resolución
+                        de problemas.
+                    </p>
+
+                    <p>
+                        Después de formarme en Mantenimiento Electrónico,
+                        he decidido dar un paso más: aprender a desarrollar
+                        software y descubrir hasta dónde puedo llegar creando
+                        mis propias soluciones digitales.
+                    </p>
+
+                    <p>
+                        No empiezo de cero: traigo conmigo experiencia técnica,
+                        curiosidad y muchas ganas de aprender.
+                    </p>
+                </div>
+
+                <aside class="ficha" aria-label="Mi perfil">
+                    <div class="ficha-cabecera">
+                        <span class="ficha-icono" aria-hidden="true">⌘</span>
+                        <span>FICHA DE PERSONAJE</span>
+                    </div>
+
+                    <dl class="datos">
+                        <div>
+                            <dt>Nombre</dt>
+                            <dd>Carlos Ruiz</dd>
+                        </div>
+                        <div>
+                            <dt>Rol actual</dt>
+                            <dd>Técnico electrónico</dd>
+                        </div>
+                        <div>
+                            <dt>Formación actual</dt>
+                            <dd>1.º DAM · IES Simarro</dd>
+                        </div>
+                        <div>
+                            <dt>Formación anterior</dt>
+                            <dd>Mantenimiento Electrónico</dd>
+                        </div>
+                        <div>
+                            <dt>Modo favorito</dt>
+                            <dd>Aprender haciendo</dd>
+                        </div>
+                    </dl>
+
+                    <div class="ficha-pie">
+                        <span class="estado"></span>
+                        NUEVA ETAPA EN CONSTRUCCIÓN
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Experiencia y recorrido -->
+        <section class="seccion seccion-oscura" id="proyectos">
+            <div class="contenedor">
+                <div class="encabezado-seccion">
+                    <p class="sobretitulo">02 / MI CAMINO</p>
+                    <h2>De los circuitos<br><span>al código.</span></h2>
+                    <p class="bajada">
+                        Cada etapa suma conocimientos. Este es el punto
+                        de partida de mi próxima aventura profesional.
+                    </p>
+                </div>
+
+                <div class="tarjetas">
+
+                    <!-- Experiencia profesional -->
+                    <article class="tarjeta">
+                        <div class="tarjeta-icono" aria-hidden="true">⚙</div>
+                        <p class="tarjeta-numero">01 — EXPERIENCIA</p>
+                        <h3>Electrónica industrial</h3>
+                        <p>
+                            Trabajo como técnico electrónico en Maf Roda,
+                            en el entorno de la maquinaria para el
+                            tratamiento y confección de fruta.
+                        </p>
+                        <span class="etiqueta">Mundo real</span>
+                    </article>
+
+                    <!-- Formación técnica -->
+                    <article class="tarjeta">
+                        <div class="tarjeta-icono" aria-hidden="true">⌁</div>
+                        <p class="tarjeta-numero">02 — FORMACIÓN</p>
+                        <h3>Mantenimiento Electrónico</h3>
+                        <p>
+                            Una base técnica que me ha acercado a los
+                            sistemas electrónicos y a la importancia
+                            de encontrar soluciones prácticas.
+                        </p>
+                        <span class="etiqueta">Base técnica</span>
+                    </article>
+
+                    <!-- Nueva etapa formativa -->
+                    <article class="tarjeta tarjeta-resaltada">
+                        <div class="tarjeta-icono" aria-hidden="true">&lt;/&gt;</div>
+                        <p class="tarjeta-numero">03 — NUEVO RETO</p>
+                        <h3>Desarrollo de software</h3>
+                        <p>
+                            Estoy cursando 1.º DAM en el IES Simarro
+                            para aprender a programar y construir
+                            aplicaciones propias.
+                        </p>
+                        <span class="etiqueta">En progreso</span>
+                    </article>
+
+                    <!-- Interés tecnológico -->
+                    <article class="tarjeta">
+                        <div class="tarjeta-icono" aria-hidden="true">▧</div>
+                        <p class="tarjeta-numero">04 — EXPLORACIÓN</p>
+                        <h3>Impresión 3D</h3>
+                        <p>
+                            Me apasiona la impresión 3D y las posibilidades
+                            de convertir una idea digital en un objeto real.
+                        </p>
+                        <span class="etiqueta">Experimentación</span>
+                    </article>
+
+                </div>
+
+                <p class="nota-proyectos">
+                    Mi portfolio irá creciendo con las prácticas,
+                    ejercicios y proyectos que desarrolle durante el ciclo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Gustos y aficiones -->
+        <section class="seccion contenedor" id="aficiones">
+            <div class="encabezado-seccion">
+                <p class="sobretitulo">03 / FUERA DE LOS CIRCUITOS</p>
+                <h2>Mis mundos<br><span>favoritos.</span></h2>
+            </div>
+
+            <div class="aficiones-grid">
+
+                <!-- Ciencia ficción -->
+                <article class="aficion aficion-scifi">
+                    <span class="aficion-numero">01</span>
+                    <span class="aficion-icono" aria-hidden="true">✦</span>
+                    <h3>Ciencia ficción<br>y fantasía</h3>
+                    <p>
+                        Star Trek, Star Wars y El Señor de los Anillos.
+                        Historias de exploración, mundos increíbles
+                        y futuros que todavía están por imaginar.
+                    </p>
+                    <span class="aficion-pie">HASTA EL INFINITO</span>
+                </article>
+
+                <!-- Música -->
+                <article class="aficion aficion-musica">
+                    <span class="aficion-numero">02</span>
+                    <span class="aficion-icono" aria-hidden="true">♫</span>
+                    <h3>Rock en todas<br>sus vertientes</h3>
+                    <p>
+                        Del Heavy Metal al Grunge. Guitarras, energía
+                        y música para acompañar cualquier aventura.
+                    </p>
+                    <span class="aficion-pie">SUBE EL VOLUMEN</span>
+                </article>
+
+                <!-- Naturaleza -->
+                <article class="aficion aficion-naturaleza">
+                    <span class="aficion-numero">03</span>
+                    <span class="aficion-icono" aria-hidden="true">⌁</span>
+                    <h3>Senderismo<br>y naturaleza</h3>
+                    <p>
+                        Me encanta el campo, caminar y desconectar.
+                        A veces, la mejor forma de avanzar es
+                        perderse un poco por el camino.
+                    </p>
+                    <span class="aficion-pie">SIGUE EL SENDERO</span>
+                </article>
+
+                <!-- Deporte -->
+                <article class="aficion aficion-deporte">
+                    <span class="aficion-numero">04</span>
+                    <span class="aficion-icono" aria-hidden="true">◎</span>
+                    <h3>Rugby y fútbol<br>de selecciones</h3>
+                    <p>
+                        Competición, estrategia, compañerismo y esa
+                        emoción especial de representar unos colores.
+                    </p>
+                    <span class="aficion-pie">JUEGO EN EQUIPO</span>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Objetivos futuros -->
+        <section class="seccion seccion-objetivo" id="objetivo">
+            <div class="contenedor objetivo-grid">
+                <div>
+                    <p class="sobretitulo">04 / PRÓXIMA MISIÓN</p>
+                    <h2>Mi siguiente nivel<br>está por <span>escribir.</span></h2>
+
+                    <p class="objetivo-texto">
+                        Quiero convertirme en desarrollador de software
+                        y diseñar mi propia empresa digital. Me interesa
+                        combinar lo que ya conozco del mundo técnico
+                        con todo lo que puedo crear mediante el código.
+                    </p>
+
+                    <p class="objetivo-texto">
+                        Y cuando toque desconectar, hay un destino que
+                        me llama especialmente: Okinawa, Japón.
+                        Nuevos paisajes, otra cultura y muchas cosas
+                        por descubrir.
+                    </p>
+
+                    <a class="boton boton-principal" href="#contacto">
+                        Hablemos de ideas ↗
+                    </a>
+                </div>
+
+                <!-- Panel decorativo de inspiración -->
+                <aside class="panel-destino" aria-label="Destino pendiente: Okinawa">
+                    <div class="panel-destino-superior">
+                        <span>DESTINO PENDIENTE</span>
+                        <span>JP / 001</span>
+                    </div>
+
+                    <div class="sol-japon" aria-hidden="true"></div>
+
+                    <div class="panel-destino-texto">
+                        <p>LA PRÓXIMA AVENTURA</p>
+                        <h3>Okinawa</h3>
+                        <span>Japón · Nuevos horizontes</span>
+                    </div>
+
+                    <div class="panel-destino-inferior">
+                        <span>SOÑAR</span>
+                        <span>PLANIFICAR</span>
+                        <span>EXPLORAR ↗</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página y contacto -->
+    <footer class="pie" id="contacto">
+        <div class="contenedor">
+            <div class="pie-principal">
+                <div>
+                    <p class="sobretitulo">¿CONECTAMOS?</p>
+                    <h2>Las buenas ideas<br><span>empiezan hablando.</span></h2>
+                    <p class="pie-descripcion">
+                        Tecnología, desarrollo, ideas y nuevos proyectos.
+                        Siempre hay algo nuevo que aprender.
+                    </p>
+                </div>
+
+                <div class="pie-contacto">
+                    <p>PUEDES ENCONTRARME EN</p>
+
+                    <!-- Sustituye el correo por uno real si quieres publicarlo -->
+                    <a href="mailto:tu-correo@ejemplo.com">
+                        Envíame un correo ↗
+                    </a>
+
+                    <!-- Añade tus perfiles reales cuando quieras -->
+                    <a href="#inicio">Volver al inicio ↑</a>
+                </div>
+            </div>
+
+            <div class="pie-final">
+                <a class="marca" href="#inicio">CR<span>.</span></a>
+                <p>© <span id="anio">2026</span> Carlos Ruiz de Lope Clement</p>
+                <p>Hecho con curiosidad, código y café.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
