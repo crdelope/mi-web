@@ -349,6 +349,13 @@ button:focus-visible {
 /* Botón que abre y cierra el menú */
 .navegacion {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 14px 20px;
 }
 
 .menu-toggle {
@@ -381,7 +388,7 @@ button:focus-visible {
 .navegacion .menu {
     position: absolute;
     top: calc(100% + 10px);
-    left: 0;                 /* cámbialo por right: 0 si el botón está a la derecha */
+    left: 20px;                 /* cámbialo por right: 0 si el botón está a la derecha */
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -438,4 +445,140 @@ button:focus-visible {
 .navegacion .menu a:focus-visible {
     outline: 2px solid #e8c58b;
     outline-offset: 3px;
+}
+/* Imagen de cabecera con degradado */
+.cabecera {
+    --fondo-cabecera: 21, 40, 58; /* tu --azul-oscuro (#15283A) en RGB */
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(var(--fondo-cabecera), 1) 0%,
+            rgba(var(--fondo-cabecera), 0.6) 45%,
+            rgba(var(--fondo-cabecera), 0.2) 100%
+        ),
+        url("../images/cabecera.jpg");
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+/* En móvil el degradado va de arriba abajo para que el texto se lea bien */
+@media (max-width: 700px) {
+    .cabecera {
+        background-image:
+            linear-gradient(
+                180deg,
+                rgba(var(--fondo-cabecera), 0.95) 0%,
+                rgba(var(--fondo-cabecera), 0.75) 60%,
+                rgba(var(--fondo-cabecera), 0.4) 100%
+            ),
+            url("../images/cabecera.jpg");
+    }
+}
+/* Frase de la cabecera en una sola línea */
+.hero.contenedor {
+    width: 100%;
+    max-width: none;
+    padding-inline: 20px;
+    padding-top: 60vh;
+}
+
+header h1 {
+    white-space: nowrap;
+    font-size: clamp(1rem, 2.6vw, 3.2rem);
+}
+
+/* En móvil no cabe en una línea: se permite que baje */
+@media (max-width: 700px) {
+    header h1 {
+        white-space: normal;
+        font-size: clamp(1.6rem, 7vw, 2rem);
+    }
+}
+nav { margin-bottom: 10px; }
+header { padding-top: 10px; }
+.frases-superiores {
+    padding: 20px 20px 0;
+    text-align: center;
+}
+/* Pie de página profesional */
+.pie {
+    padding: 60px 20px 25px;
+    text-align: left;
+}
+
+.pie-principal {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.pie h2 {
+    margin-bottom: 14px;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    line-height: 1.3;
+}
+
+.pie h2 span {
+    color: var(--crema);
+}
+
+.pie-descripcion {
+    max-width: 380px;
+}
+
+/* Títulos pequeños de cada columna */
+.pie h3 {
+    margin-bottom: 14px;
+    color: var(--marron);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.pie-lista {
+    list-style: none;
+}
+
+.pie-lista li {
+    margin-bottom: 10px;
+}
+
+.pie-lista a {
+    color: var(--gris);
+}
+
+.pie-lista a:hover {
+    color: var(--azul-claro);
+}
+
+/* Barra inferior */
+.pie-final {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 24px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(214, 222, 229, 0.15);
+    font-size: 0.9rem;
+}
+
+.pie-final p {
+    margin: 0;
+}
+
+/* Móvil: una sola columna */
+@media (max-width: 700px) {
+    .pie-principal {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .pie-final {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

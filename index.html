@@ -27,45 +27,40 @@
 
     <!-- Cabecera y navegación -->
     <header class="cabecera" id="inicio">
+        <div class="frases-superiores">
+            <p class="sobretitulo">TÉCNICO ELECTRÓNICO · FUTURO DESARROLLADOR</p>
+            <h1>Soy Carlos Ruiz. Me gusta crear cosas y ver que funcionan.</h1>
+        </div>
         <nav class="navegacion contenedor" aria-label="Navegación principal">
 
             <a class="marca" href="#inicio" aria-label="Carlos Ruiz, inicio">
-                CR<span>.</span>
+                <span></span>
             </a>
+            <div class="menu-contenedor">
+                <button class="menu-toggle" type="button"
+                    aria-expanded="false"
+                    aria-controls="menu"
+                    aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            <button class="menu-toggle" type="button"
-                aria-expanded="false"
-                aria-controls="menu"
-                aria-label="Abrir menú de navegación">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-            </button>
-
-            <ul class="menu" id="menu">
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#proyectos">Mi camino</a></li>
-                <li><a href="#aficiones">Aficiones</a></li>
-                <li><a href="#objetivo">Mi próximo nivel</a></li>
-                <li><a class="enlace-contacto" href="#contacto">Contacto ↗</a></li>
-            </ul>
+                <ul class="menu" id="menu">
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#proyectos">Mi camino</a></li>
+                    <li><a href="#aficiones">Aficiones</a></li>
+                    <li><a href="#objetivo">Mi próximo nivel</a></li>
+                    <li><a class="enlace-contacto" href="#contacto">Contacto ↗</a></li>
+                </ul>
+            </div>
 
         </nav>
 
         <!-- Presentación principal -->
         <section class="hero contenedor">
             <div class="hero-texto">
-                <p class="sobretitulo">
-                    <span class="punto"></span>
-                    TÉCNICO ELECTRÓNICO · FUTURO DESARROLLADOR
-                </p>
-
-                <h1>
-                    Soy Carlos.<br>
-                    <span>Me gusta crear</span><br>
-                    cosas que funcionan.
-                </h1>
-
+                
                 <p class="hero-descripcion">
                     Entre circuitos, código y nuevas ideas.
                     Con mentalidad de técnico, curiosidad de explorador
@@ -88,32 +83,6 @@
             </div>
 
             <!-- Ilustración decorativa hecha con CSS -->
-            <div class="hero-visual" aria-hidden="true">
-                <div class="orbita orbita-externa"></div>
-                <div class="orbita orbita-interna"></div>
-
-                <div class="brujula">
-                    <span class="brujula-norte">N</span>
-                    <span class="brujula-este">E</span>
-                    <span class="brujula-sur">S</span>
-                    <span class="brujula-oeste">O</span>
-                    <div class="aguja"></div>
-                    <div class="centro-aguja"></div>
-                </div>
-
-                <div class="etiqueta-flotante etiqueta-tech">
-                    <span>⌘</span> TECNOLOGÍA
-                </div>
-
-                <div class="etiqueta-flotante etiqueta-aventura">
-                    <span>✦</span> ESPÍRITU EXPLORADOR
-                </div>
-
-                <div class="coordenadas">
-                    CURIOSIDAD: INFINITA<br>
-                    DESTINO: POR DESCUBRIR
-                </div>
-            </div>
         </section>
 
         <!-- Banda de especialidades -->
@@ -395,38 +364,50 @@
     </main>
 
     <!-- Pie de página y contacto -->
-    <footer class="pie" id="contacto">
-        <div class="contenedor">
-            <div class="pie-principal">
-                <div>
-                    <p class="sobretitulo">¿CONECTAMOS?</p>
-                    <h2>Las buenas ideas<br><span>empiezan hablando.</span></h2>
-                    <p class="pie-descripcion">
-                        Tecnología, desarrollo, ideas y nuevos proyectos.
-                        Siempre hay algo nuevo que aprender.
-                    </p>
-                </div>
+<footer class="pie" id="contacto">
+    <div class="contenedor">
 
-                <div class="pie-contacto">
-                    <p>PUEDES ENCONTRARME EN</p>
+        <div class="pie-principal">
 
-                    <!-- Sustituye el correo por uno real si quieres publicarlo -->
-                    <a href="mailto:tu-correo@ejemplo.com">
-                        Envíame un correo ↗
-                    </a>
-
-                    <!-- Añade tus perfiles reales cuando quieras -->
-                    <a href="#inicio">Volver al inicio ↑</a>
-                </div>
+            <div class="pie-presentacion">
+                <h2>Las buenas ideas<br><span>empiezan hablando.</span></h2>
+                <p class="pie-descripcion">
+                    Tecnología, desarrollo, ideas y nuevos proyectos.
+                    Siempre hay algo nuevo que aprender.
+                </p>
             </div>
 
-            <div class="pie-final">
-                <a class="marca" href="#inicio">CR<span>.</span></a>
-                <p>© <span id="anio">2026</span> Carlos Ruiz de Lope Clement</p>
-                <p>Hecho con curiosidad, código y café.</p>
+            <div class="pie-bloque">
+                <h3>Navegación</h3>
+                <ul class="pie-lista">
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#proyectos">Mi camino</a></li>
+                    <li><a href="#aficiones">Aficiones</a></li>
+                    <li><a href="#objetivo">Mi próximo nivel</a></li>
+                </ul>
             </div>
+
+            <div class="pie-bloque">
+                <h3>Contacto</h3>
+                <ul class="pie-lista">
+                    <!-- Sustituye el correo por uno real -->
+                    <li><a href="mailto:carruicle@alu.edu.gva.es">carruicle@alu.edu.gva.es</a></li>
+                    <!-- Sustituye tu-usuario por tu usuario de GitHub, o borra esta línea -->
+                    <li><a href="https://github.com/crdelope" target="_blank" rel="noopener">GitHub ↗</a></li>
+                    <li>IES Simarro · 1.º DAM</li>
+                </ul>
+            </div>
+
         </div>
-    </footer>
+
+        <div class="pie-final">
+            <p>© <span id="anio">2026</span> Carlos Ruiz de Lope Clement</p>
+            <p>Hecho con curiosidad, código y café.</p>
+            <a href="#inicio">Volver arriba ↑</a>
+        </div>
+
+    </div>
+</footer>
     <!--<script src="js/script.js"></script>-->
 
 </body>
