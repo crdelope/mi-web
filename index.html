@@ -4,6 +4,16 @@
 <head>
     <!-- Configuración del documento -->
     <meta charset="UTF-8">
+    <script>
+    try {
+        document.documentElement.classList.add(
+            sessionStorage.getItem("introVista") ? "sin-intro" : "con-intro"
+        );
+    } catch (e) {
+        document.documentElement.classList.add("sin-intro");
+    }
+</script>
+<noscript><style>#intro { display: none !important; }</style></noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Carlos Ruiz: electrónica, desarrollo de software, tecnología y aventuras.">
     <meta name="theme-color" content="#101923">
@@ -12,6 +22,7 @@
 
     <!-- Hoja de estilos -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/intro.css">
 
     <!-- Icono de la pestaña -->
    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -19,9 +30,101 @@
 
     <!-- JavaScript: defer permite cargar el HTML primero -->
     <script src="js/script.js" defer></script>
+    <script src="js/intro.js" defer></script>
 </head>
 
 <body>
+        <!-- ===== INTRO DE ENTRADA ===== -->
+    <div id="intro" role="dialog" aria-modal="true" aria-label="Introducción">
+        <button class="saltar" type="button">Saltar intro ›</button>
+
+        <div class="intro-logo">
+            <img src="images/favicon.svg" alt="" width="46" height="46">
+            <span>CARLOS RUIZ</span>
+        </div>
+
+        <div class="escena">
+
+            <figure class="foto" style="--r:-3deg">
+                <svg viewBox="0 0 400 260" aria-hidden="true">
+                    <line x1="20" y1="222" x2="380" y2="222" stroke="#2878B5" stroke-width="2"/>
+                    <rect x="94" y="206" width="52" height="16" rx="3" fill="#2878B5"/>
+                    <g class="b1">
+                        <line class="brazo" x1="120" y1="206" x2="170" y2="120"/>
+                        <g class="b2">
+                            <line class="brazo" x1="170" y1="120" x2="260" y2="150"/>
+                            <path class="brazo fino" d="M260 150 l16 -10 M260 150 l16 12"/>
+                        </g>
+                        <circle cx="170" cy="120" r="7" fill="#65B9F2"/>
+                    </g>
+                    <circle cx="120" cy="206" r="8" fill="#65B9F2"/>
+                    <rect x="300" y="198" width="34" height="24" rx="3" fill="#A87950"/>
+                </svg>
+                <figcaption>Robótica</figcaption>
+            </figure>
+
+            <figure class="foto" style="--r:2.5deg">
+                <svg viewBox="0 0 400 260" aria-hidden="true">
+                    <g class="g1">
+                        <circle class="dientes" cx="150" cy="130" r="46" stroke-dasharray="10 6.06"/>
+                        <circle class="aro" cx="150" cy="130" r="30"/>
+                        <circle cx="150" cy="130" r="8" fill="#65B9F2"/>
+                    </g>
+                    <g class="g2">
+                        <circle class="dientes" cx="238" cy="160" r="32" stroke-dasharray="10.5 6.25"/>
+                        <circle class="aro" cx="238" cy="160" r="20"/>
+                        <circle cx="238" cy="160" r="6" fill="#65B9F2"/>
+                    </g>
+                </svg>
+                <figcaption>Mecánica</figcaption>
+            </figure>
+
+            <figure class="foto" style="--r:-2deg">
+                <svg viewBox="0 0 400 260" aria-hidden="true">
+                    <path class="pista" d="M20 80 H110 V110 H165"/>
+                    <path class="pista" d="M20 130 H165"/>
+                    <path class="pista" d="M20 180 H90 V150 H165"/>
+                    <path class="pista" d="M235 110 H300 V70 H380"/>
+                    <path class="pista" d="M235 130 H380"/>
+                    <path class="pista" d="M235 150 H320 V190 H380"/>
+                    <rect x="165" y="95" width="70" height="70" rx="6" fill="#0f1f2e" stroke="#A87950" stroke-width="3"/>
+                    <text x="200" y="138" text-anchor="middle" fill="#9fd8ff" font-size="22" font-weight="700" font-family="Segoe UI, Arial, sans-serif">CR</text>
+                    <circle class="nodo" cx="20" cy="80" r="5"/>
+                    <circle class="nodo" cx="20" cy="130" r="5"/>
+                    <circle class="nodo" cx="20" cy="180" r="5"/>
+                    <circle class="nodo" cx="380" cy="70" r="5"/>
+                    <circle class="nodo" cx="380" cy="130" r="5"/>
+                    <circle class="nodo" cx="380" cy="190" r="5"/>
+                </svg>
+                <figcaption>Electrónica</figcaption>
+            </figure>
+
+            <figure class="foto" style="--r:3deg">
+                <svg viewBox="0 0 400 260" aria-hidden="true">
+                    <rect x="30" y="196" width="340" height="10" rx="5" fill="#2878B5"/>
+                    <path d="M170 190 V80 H230 V190" fill="none" stroke="#65B9F2" stroke-width="4" stroke-linejoin="round"/>
+                    <rect class="haz" x="196" y="84" width="8" height="104"/>
+                    <g class="fruta" style="animation-delay:0s"><circle cx="0" cy="182" r="13" fill="#D98A3D"/></g>
+                    <g class="fruta" style="animation-delay:-1.25s"><circle cx="0" cy="182" r="13" fill="#D98A3D"/></g>
+                    <g class="fruta" style="animation-delay:-2.5s"><circle cx="0" cy="182" r="13" fill="#D98A3D"/></g>
+                    <g class="fruta" style="animation-delay:-3.75s"><circle cx="0" cy="182" r="13" fill="#D98A3D"/></g>
+                </svg>
+                <figcaption>Automatización</figcaption>
+            </figure>
+
+        </div>
+
+        <div class="arranque">
+            <button class="power" type="button" aria-label="Arrancar y entrar a la web">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3v8"/>
+                    <path d="M6.6 6.6a8 8 0 1 0 10.8 0"/>
+                </svg>
+            </button>
+            <p class="mensaje" id="intro-msg" aria-live="polite">Pulsa para arrancar</p>
+        </div>
+    </div>
+
 
     <!-- Enlace de accesibilidad para saltar la navegación -->
     <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
@@ -30,7 +133,7 @@
     <header class="cabecera" id="inicio">
         <div class="frases-superiores">
             <p class="sobretitulo">TÉCNICO ELECTRÓNICO · FUTURO DESARROLLADOR</p>
-            <h1>Soy Carlos Ruiz. Me gusta crear cosas y ver que funcionan.</h1>
+            <h1>Soy Carlos Ruiz. Técnico Superior en Mantenimiento Electrónico y Futuro Técnico Superior en DAM.</h1>
         </div>
         <nav class="navegacion contenedor" aria-label="Navegación principal">
 

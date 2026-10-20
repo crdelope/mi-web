@@ -485,9 +485,13 @@ button:focus-visible {
 }
 
 header h1 {
-    white-space: nowrap;
-    font-size: clamp(1rem, 2.6vw, 3.2rem);
+    white-space: normal;
+    max-width: 1100px;
+    margin-inline: auto;
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    text-wrap: balance;
 }
+
 
 /* En móvil no cabe en una línea: se permite que baje */
 @media (max-width: 700px) {
@@ -581,4 +585,247 @@ header { padding-top: 10px; }
         flex-direction: column;
         align-items: flex-start;
     }
+}
+/* ===== ANIMACIONES ===== */
+
+/* 1. Frase que se escribe sola */
+header h1 {
+    min-height: 2.5em;
+}
+
+.cursor {
+    display: inline-block;
+    width: 0.09em;
+    height: 1em;
+    margin-left: 0.08em;
+    vertical-align: -0.12em;
+    background-color: var(--azul-claro);
+    animation: parpadeo 1s steps(1) infinite;
+}
+
+@keyframes parpadeo {
+    50% { opacity: 0; }
+}
+
+/* 2. Brillo neón en la etiqueta de arriba */
+.frases-superiores .sobretitulo {
+    color: var(--azul-claro);
+    animation: neon 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+    from { text-shadow: 0 0 3px rgba(101, 185, 242, 0.35); }
+    to   { text-shadow: 0 0 6px #65B9F2,
+                        0 0 18px rgba(101, 185, 242, 0.85),
+                        0 0 34px rgba(40, 120, 181, 0.75); }
+}
+
+/* 3. Parallax: la imagen se queda fija mientras bajas */
+.cabecera {
+    background-attachment: scroll, fixed; /* degradado, imagen */
+}
+
+/* 4. Aparición al hacer scroll */
+.reveal {
+    opacity: 0;
+}
+
+.reveal.visible {
+    opacity: 1;
+    animation: aparecer 0.7s ease var(--retardo, 0s) backwards;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* Respeto por la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .cabecera { background-attachment: scroll; }
+    .frases-superiores .sobretitulo,
+    .cursor { animation: none; }
+}
+/* ===== SECCIÓN "QUIÉN SOY" ===== */
+.sobre-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
+    gap: 64px;
+    align-items: start;
+}
+
+/* Texto en una sola columna, cómoda de leer */
+.sobre-texto {
+    columns: auto;
+    column-rule: none;
+    max-width: 62ch;
+    text-align: left;
+}
+
+/* Primera frase destacada */
+.sobre-texto .texto-destacado {
+    position: relative;
+    margin-bottom: 28px;
+    padding-top: 22px;
+    color: var(--azul-oscuro);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    line-height: 1.5;
+}
+
+.sobre-texto .texto-destacado::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 3px;
+    background-color: var(--marron);
+    border-radius: 2px;
+}
+
+.sobre-texto p:not(.texto-destacado) {
+    margin-bottom: 20px;
+    color: #3a4a5b;
+    font-size: 1.06rem;
+    line-height: 1.85;
+}
+
+/* Ficha de perfil */
+.ficha {
+    position: sticky;
+    top: 24px;
+    padding: 28px;
+    background-color: var(--blanco);
+    border: 1px solid rgba(21, 40, 58, 0.12);
+    border-top: 4px solid var(--marron);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16, 24, 32, 0.07);
+}
+
+.ficha-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(21, 40, 58, 0.12);
+    color: var(--azul-oscuro);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.ficha-icono {
+    color: var(--azul);
+    font-size: 1.3rem;
+}
+
+.datos > div {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(21, 40, 58, 0.08);
+}
+
+.datos > div:last-child {
+    border-bottom: 0;
+}
+
+.datos dt {
+    color: var(--texto-secundario);
+    font-size: 0.82rem;
+}
+
+.datos dd {
+    margin-top: 2px;
+    color: var(--azul-oscuro);
+    font-weight: 600;
+}
+
+.ficha-pie {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(21, 40, 58, 0.12);
+    color: var(--texto-secundario);
+    font-size: 0.85rem;
+}
+
+.estado {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--azul-claro);
+    box-shadow: 0 0 0 4px rgba(101, 185, 242, 0.25);
+}
+
+/* Móvil: el texto arriba y la ficha debajo */
+@media (max-width: 800px) {
+    .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .ficha {
+        position: static;
+    }
+}
+/* ===== TEXTOS DEL RESTO DE SECCIONES ===== */
+
+/* Frase destacada de cada sección */
+.encabezado-seccion .bajada,
+.objetivo-grid h2 + .objetivo-texto {
+    position: relative;
+    max-width: 62ch;
+    margin-top: 22px;
+    margin-bottom: 28px;
+    padding-top: 22px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    line-height: 1.5;
+}
+
+.encabezado-seccion .bajada::before,
+.objetivo-grid h2 + .objetivo-texto::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 3px;
+    background-color: var(--marron);
+    border-radius: 2px;
+}
+
+/* Resto de párrafos */
+.objetivo-texto {
+    max-width: 62ch;
+    margin-bottom: 20px;
+    font-size: 1.06rem;
+    line-height: 1.85;
+}
+
+/* Nota final de "Mi camino" */
+.nota-proyectos {
+    max-width: 62ch;
+    margin-top: 40px;
+    padding-left: 18px;
+    border-left: 3px solid var(--marron);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    text-align: left;
+}
+/* ===== ALINEACIÓN: todas las secciones en la misma línea ===== */
+main > .seccion {
+    width: min(90%, var(--ancho-maximo));
+    margin-inline: auto;
+}
+
+/* Un contenedor dentro de una sección ya no recorta el ancho otra vez */
+main > .seccion > .contenedor {
+    width: 100%;
 }
