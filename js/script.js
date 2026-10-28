@@ -87,26 +87,36 @@ document.addEventListener("DOMContentLoaded", () => {
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // 3.1 Frase principal que se escribe sola
-    const titulo = document.querySelector(".frases-superiores h1");
+   const titulo = document.querySelector(".frases-superiores h1");
+    let frase = "";
+    let escritura = null;
 
-    function escribirTitulo() {
+    // Paso 1: dejar el titular vacío (solo el cursor) en cuanto carga la página
+    function prepararTitulo() {
         if (!titulo || reducirMovimiento) return;
 
-        const frase = titulo.textContent.trim();
+        frase = titulo.textContent.trim();
         titulo.setAttribute("aria-label", frase);
         titulo.innerHTML =
             '<span class="escritura" aria-hidden="true"></span>' +
             '<span class="cursor" aria-hidden="true"></span>';
+        escritura = titulo.querySelector(".escritura");
+    }
 
-        const escritura = titulo.querySelector(".escritura");
+    // Paso 2: escribir las letras una a una
+    function escribirTitulo() {
+        if (!escritura) return;
+
         let i = 0;
-
         const escribir = setInterval(() => {
             i++;
             escritura.textContent = frase.slice(0, i);
             if (i >= frase.length) clearInterval(escribir);
         }, 45);
     }
+
+    // El titular se vacía ya, pero solo se escribe cuando termina la intro
+    prepararTitulo();
 
     if (document.documentElement.classList.contains("con-intro")) {
         document.addEventListener("intro:fin", escribirTitulo, { once: true });

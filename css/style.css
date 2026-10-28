@@ -1027,9 +1027,18 @@ header h1 {
 
 header h1 {
     max-width: 26ch;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(1.62rem, 3.6vw, 2.52rem);
     line-height: 1.2;
     min-height: 3.6em;
+}
+/* Texto pequeño, descripción e instituto: 10 % menos (antes 1.1rem) */
+.cabecera p {
+    font-size: 0.99rem;
+}
+
+/* Banda de especialidades: 10 % menos (antes 1rem) */
+.banda-contenido {
+    font-size: 0.9rem;
 }
 
 .hero-descripcion {
@@ -1039,4 +1048,25 @@ header h1 {
 /* CAMBIO: la línea del instituto, más cerca de la descripción */
 .hero-nota {
     margin-top: 12px;
+}
+
+/* =========================================================
+   ENLACE "SALTAR AL CONTENIDO"
+   Escondido arriba del todo hasta que se llega a él con Tab.
+   ========================================================= */
+.salto-contenido {
+    position: absolute;
+    top: -60px;
+    left: 76px;
+    z-index: 3000;
+    padding: 10px 16px;
+    color: var(--negro);
+    font-weight: 600;
+    text-decoration: none;
+    background-color: var(--azul-claro);
+    border-radius: 0 0 8px 8px;
+}
+
+.salto-contenido:focus {
+    top: 0;
 }
