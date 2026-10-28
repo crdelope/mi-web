@@ -974,3 +974,99 @@ main > .seccion > .contenedor {
         opacity: 1;
     }
 }
+
+/* =========================================================
+   CABECERA COMPACTA
+   Sin imagen de fondo, con el texto alineado a la derecha.
+   ========================================================= */
+
+/* Fondo: degradado azul oscuro (sin imagen ni parallax) */
+.cabecera {
+    background-image: linear-gradient(180deg, var(--azul-oscuro) 0%, #0f1c2a 100%);
+    background-attachment: scroll;
+}
+
+@media (max-width: 700px) {
+    .cabecera {
+        background-image: linear-gradient(180deg, var(--azul-oscuro) 0%, #0f1c2a 100%);
+    }
+}
+
+/* CAMBIO: menos espacio por debajo de la banda */
+header {
+    padding-bottom: 36px;
+}
+
+/* Bloque blanco: empieza más abajo, separado del azul */
+.hero.contenedor {
+    padding-top: 56px;      /* CAMBIO: separación entre azul y blanco */
+    padding-bottom: 0;      /* CAMBIO: el blanco queda más junto */
+}
+
+/* Las tres zonas comparten ancho y se pegan al borde derecho */
+.frases-superiores,
+.hero.contenedor,
+.banda-contenido {
+    width: min(100%, 1000px);
+    margin-left: auto;      /* CAMBIO: antes margin-inline: auto (centrado) */
+    margin-right: 0;        /* CAMBIO: pegado al borde derecho */
+    padding-right: 8px;     /* CAMBIO: hueco hasta el borde. Más pequeño = más pegado */
+    text-align: right;
+}
+
+.banda-contenido {
+    padding-top: 16px;      /* CAMBIO: banda más cerca del texto blanco */
+}
+
+/* Cada párrafo y el titular se pegan al borde derecho */
+.cabecera p,
+header h1 {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+header h1 {
+    max-width: 26ch;
+    font-size: clamp(1.62rem, 3.6vw, 2.52rem);
+    line-height: 1.2;
+    min-height: 3.6em;
+}
+/* Texto pequeño, descripción e instituto: 10 % menos (antes 1.1rem) */
+.cabecera p {
+    font-size: 0.99rem;
+}
+
+/* Banda de especialidades: 10 % menos (antes 1rem) */
+.banda-contenido {
+    font-size: 0.9rem;
+}
+
+.hero-descripcion {
+    max-width: 52ch;
+}
+
+/* CAMBIO: la línea del instituto, más cerca de la descripción */
+.hero-nota {
+    margin-top: 12px;
+}
+
+/* =========================================================
+   ENLACE "SALTAR AL CONTENIDO"
+   Escondido arriba del todo hasta que se llega a él con Tab.
+   ========================================================= */
+.salto-contenido {
+    position: absolute;
+    top: -60px;
+    left: 76px;
+    z-index: 3000;
+    padding: 10px 16px;
+    color: var(--negro);
+    font-weight: 600;
+    text-decoration: none;
+    background-color: var(--azul-claro);
+    border-radius: 0 0 8px 8px;
+}
+
+.salto-contenido:focus {
+    top: 0;
+}
