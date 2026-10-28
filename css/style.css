@@ -829,3 +829,148 @@ main > .seccion {
 main > .seccion > .contenedor {
     width: 100%;
 }
+
+/* =========================================================
+   BARRA LATERAL
+   Escritorio: barra fija a la izquierda, estrecha, se abre
+   al pasar el ratón. Móvil (hasta 700px): sigue el botón
+   de tres rayas de antes.
+   ========================================================= */
+
+/* --- Lo que comparten móvil y escritorio --- */
+
+/* Logo CR */
+.marca {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    color: var(--azul-claro);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    border: 2px solid var(--azul-claro);
+    border-radius: var(--radio);
+}
+
+.marca:focus-visible {
+    outline: 2px solid #e8c58b;
+    outline-offset: 3px;
+}
+
+/* Iconos: dibujados con línea, del color del texto */
+.navegacion .icono {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Icono y texto uno al lado del otro */
+.navegacion .menu li a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* --- Móvil: logo a la izquierda, botón a la derecha --- */
+@media (max-width: 700px) {
+    .navegacion {
+        justify-content: space-between;
+    }
+
+    .navegacion .menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+/* --- Escritorio: barra lateral --- */
+@media (min-width: 701px) {
+
+    /* Deja sitio a la izquierda para que la barra no tape nada */
+    body {
+        padding-left: 64px;
+    }
+
+    /* La barra: fija, a toda la altura, estrecha */
+    .navegacion {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1500;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 64px;
+        padding: 14px 8px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #101a29;
+        border-right: 1px solid #3d6fa8;
+        transition: width 0.25s ease;
+    }
+
+    /* Se abre al pasar el ratón */
+    .navegacion:hover {
+        width: 240px;
+    }
+
+    /* Se abre al navegar con el teclado (Tab) */
+    .navegacion:has(:focus-visible) {
+        width: 240px;
+    }
+
+    .marca {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+    }
+
+    /* El botón de tres rayas ya no hace falta */
+    .menu-toggle {
+        display: none;
+    }
+
+    .menu-contenedor {
+        display: block;
+        width: 100%;
+    }
+
+    /* La lista deja de ser un desplegable: pasa a estar siempre visible */
+    .navegacion .menu {
+        position: static;
+        min-width: 0;
+        padding: 0;
+        background: none;
+        border: 0;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .navegacion .menu li a {
+        padding: 12px;
+    }
+
+    /* El nombre de cada enlace: oculto hasta que se abre la barra */
+    .navegacion .texto {
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .navegacion:hover .texto {
+        opacity: 1;
+    }
+
+    .navegacion:has(:focus-visible) .texto {
+        opacity: 1;
+    }
+}
