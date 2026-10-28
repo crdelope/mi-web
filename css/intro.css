@@ -125,13 +125,13 @@ html.sin-intro #intro {
 #intro .foto:nth-child(4) { --r: 3deg; }
 
 /* Retraso de cada fruta de la cinta (antes iba en style="" dentro del HTML) */
-#intro .fruta:nth-of-type(1) { animation-delay: 0s; }
+#intro .fruta:nth-of-type(1) { animation-delay: -0.15s; }
 
-#intro .fruta:nth-of-type(2) { animation-delay: -1,25s; }
+#intro .fruta:nth-of-type(2) { animation-delay: -0.25s; }
 
-#intro .fruta:nth-of-type(3) { animation-delay: -2.5s; }
+#intro .fruta:nth-of-type(3) { animation-delay: -0.75s; }
 
-#intro .fruta:nth-of-type(4) { animation-delay: -3.75s; }
+#intro .fruta:nth-of-type(4) { animation-delay: -1s; }
 
 
 #intro .foto svg {
