@@ -1173,3 +1173,35 @@ header h1 {
     font-variant-numeric: tabular-nums;
     text-align: left;
 }
+
+/* Los bugs */
+.juego-svg .bug {
+    transition: transform 0.16s linear;
+}
+
+.juego-svg .bug-cuerpo {
+    fill: var(--crema, #F3EBDD);
+    stroke: var(--marron);
+    stroke-width: 1;
+}
+
+.juego-svg .bug-patas {
+    fill: none;
+    stroke: var(--crema, #F3EBDD);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+}
+
+.juego-svg .bug-ojo {
+    fill: var(--negro);
+}
+
+/* Línea donde el juego te habla */
+.juego-mensaje {
+    min-height: 1.4em;
+    margin-top: 10px;
+    color: var(--azul-claro);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: left;
+}
