@@ -1070,3 +1070,96 @@ header h1 {
 .salto-contenido:focus {
     top: 0;
 }
+/* =========================================================
+   JUEGO DEL CHIP
+   Escritorio ancho: el juego a la izquierda y el texto a la derecha.
+   ========================================================= */
+.juego {
+    width: min(100%, 420px);
+    margin: 24px auto 0;
+    padding: 14px;
+    background-color: #0b1520;
+    border: 1px solid var(--azul);
+    border-radius: var(--radio);
+}
+
+.juego-titulo {
+    margin-bottom: 10px;
+    color: var(--azul-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.juego-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.juego-svg .pared {
+    fill: var(--azul-oscuro);
+    stroke: var(--azul);
+    stroke-width: 1.5;
+}
+
+.juego-svg .bit {
+    fill: var(--azul-claro);
+}
+
+@media (min-width: 1000px) {
+    .cabecera {
+        display: grid;
+        grid-template-columns: minmax(300px, 400px) 1fr;
+        column-gap: 40px;
+        align-items: start;
+    }
+
+    .juego {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+        margin: 20px 0 0;
+    }
+
+    .frases-superiores,
+    .hero.contenedor,
+    .banda {
+        grid-column: 2;
+    }
+}
+
+/* Botón y ayuda del juego */
+.juego-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.juego-boton {
+    min-height: 40px;
+    padding: 8px 18px;
+}
+
+.juego-ayuda {
+    color: var(--gris);
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+/* El chip CR */
+.juego-svg .chip {
+    transition: transform 0.16s linear;
+}
+
+.juego-svg .chip-cuerpo {
+    fill: var(--marron);
+    stroke: #e8c58b;
+    stroke-width: 1;
+}
+
+.juego-svg .chip-texto {
+    fill: var(--negro);
+    font: 800 9px sans-serif;
+}
