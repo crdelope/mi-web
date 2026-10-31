@@ -1163,3 +1163,13 @@ header h1 {
     fill: var(--negro);
     font: 800 9px sans-serif;
 }
+
+/* Marcador de bits */
+.juego-marcador {
+    margin-bottom: 8px;
+    color: var(--blanco);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+}

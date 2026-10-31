@@ -1,11 +1,12 @@
 // =========================================
 // MINI-JUEGO DEL CHIP (js/juego.js)
-// Paso 3: mover el chip con las flechas
+// Paso 4: comer bits y contador
 // =========================================
 (function () {
     const tablero = document.getElementById("tablero");
     const boton = document.getElementById("juego-boton");
-    if (!tablero || !boton) return;
+    const marcador = document.getElementById("marcador");   // NUEVO
+    if (!tablero || !boton || !marcador) return;
 
     // El mapa del circuito. Cada letra es una casilla:
     // #  pared      .  bit      P  inicio del chip      B  inicio de un bug
@@ -48,6 +49,9 @@
     let reloj = null;                  // el temporizador que da los pasos
     let jugando = false;
     let dibujoChip = null;             // el dibujo del chip en el tablero
+    const bits = {};                   // NUEVO: los bits que quedan, por casilla ("3,5")
+    let total = 0;                     // NUEVO: cuántos bits hay en total
+    let comidos = 0;                   // NUEVO: cuántos se ha comido ya
 
     // Busca la P en el mapa para saber dónde empieza el chip
     MAPA.forEach((fila, y) => {
@@ -80,6 +84,23 @@
             `translate(${chip.x * CELDA}px, ${chip.y * CELDA}px)`;
     }
 
+    // NUEVO: escribe en el marcador cuántos bits lleva
+    function actualizarMarcador() {
+        marcador.textContent = `Bits: ${comidos} / ${total}`;
+    }
+
+    // NUEVO: si en la casilla del chip hay un bit, se lo come
+    function comer() {
+        const clave = `${chip.x},${chip.y}`;
+        const bit = bits[clave];
+        if (bit) {
+            bit.remove();          // quita el puntito del dibujo
+            delete bits[clave];    // y lo borra de la lista
+            comidos++;
+            actualizarMarcador();
+        }
+    }
+
     function dibujarTablero() {
         const svg = crear("svg", {
             viewBox: `0 0 ${COLUMNAS * CELDA} ${FILAS * CELDA}`,
@@ -101,12 +122,15 @@
                         class: "pared"
                     }));
                 } else if (letra === ".") {
-                    svg.appendChild(crear("circle", {
+                    const bit = crear("circle", {
                         cx: x * CELDA + CELDA / 2,
                         cy: y * CELDA + CELDA / 2,
                         r: 3,
                         class: "bit"
-                    }));
+                    });
+                    svg.appendChild(bit);
+                    bits[`${x},${y}`] = bit;   // NUEVO: lo apunta en la lista
+                    total++;                   // NUEVO: y lo cuenta
                 }
             });
         });
@@ -133,6 +157,7 @@
 
         tablero.appendChild(svg);
         colocarChip();
+        actualizarMarcador();   // NUEVO: enseña 0 / 84 desde el principio
     }
 
     // Un paso del juego: se repite cada 160 milisegundos mientras juegas
@@ -150,6 +175,7 @@
             chip.x = nuevoX;
             chip.y = nuevoY;
             colocarChip();
+            comer();   // NUEVO: ¿hay un bit en la casilla nueva?
         }
     }
 
