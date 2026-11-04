@@ -31,6 +31,7 @@
     <!-- JavaScript: defer permite cargar el HTML primero -->
     <script src="js/script.js" defer></script>
     <script src="js/intro.js" defer></script>
+    <script src="js/juego.js" defer></script>
 </head>
 
 <body>
@@ -230,6 +231,19 @@
                 <span aria-hidden="true">-</span>
                 <span>AVENTURAS</span>
             </div>
+        </div>
+         <!-- Mini-juego del chip -->
+        <div class="juego" role="region" aria-label="Mini-juego del chip">
+            <div class="juego-titulo">¿Un descanso? Ayuda al chip a comerse todos los bits.</div>
+            <div class="juego-marcador" id="marcador">Bits: 0 / 84</div>
+            <div id="tablero"></div>
+            <div class="juego-barra">
+                
+                <button class="juego-boton" id="juego-boton" type="button">Jugar</button>
+                <span class="juego-ayuda">Mueve el chip con las flechas, con W A S D o deslizando el dedo</span>
+            </div>
+            <div class="juego-mensaje" id="mensaje" role="status" aria-live="polite"></div>
+            <a class="juego-enlace" id="juego-enlace" href="#contacto" hidden>Escríbeme →</a>
         </div>
     </header>
 

@@ -446,36 +446,6 @@ button:focus-visible {
     outline: 2px solid #e8c58b;
     outline-offset: 3px;
 }
-/* Imagen de cabecera con degradado */
-.cabecera {
-    --fondo-cabecera: 21, 40, 58; /* tu --azul-oscuro (#15283A) en RGB */
-
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(var(--fondo-cabecera), 1) 0%,
-            rgba(var(--fondo-cabecera), 0.6) 45%,
-            rgba(var(--fondo-cabecera), 0.2) 100%
-        ),
-        url("../images/cabecera.jpg");
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
-}
-
-/* En móvil el degradado va de arriba abajo para que el texto se lea bien */
-@media (max-width: 700px) {
-    .cabecera {
-        background-image:
-            linear-gradient(
-                180deg,
-                rgba(var(--fondo-cabecera), 0.95) 0%,
-                rgba(var(--fondo-cabecera), 0.75) 60%,
-                rgba(var(--fondo-cabecera), 0.4) 100%
-            ),
-            url("../images/cabecera.jpg");
-    }
-}
 /* Frase de la cabecera en una sola línea */
 .hero.contenedor {
     width: 100%;
@@ -619,12 +589,6 @@ header h1 {
                         0 0 18px rgba(101, 185, 242, 0.85),
                         0 0 34px rgba(40, 120, 181, 0.75); }
 }
-
-/* 3. Parallax: la imagen se queda fija mientras bajas */
-.cabecera {
-    background-attachment: scroll, fixed; /* degradado, imagen */
-}
-
 /* 4. Aparición al hacer scroll */
 .reveal {
     opacity: 0;
@@ -1069,4 +1033,174 @@ header h1 {
 
 .salto-contenido:focus {
     top: 0;
+}
+/* =========================================================
+   JUEGO DEL CHIP
+   Escritorio ancho: el juego a la izquierda y el texto a la derecha.
+   ========================================================= */
+.juego {
+    width: min(100%, 420px);
+    margin: 24px auto 0;
+    padding: 14px;
+    background-color: #0b1520;
+    border: 1px solid var(--azul);
+    border-radius: var(--radio);
+}
+
+.juego-titulo {
+    margin-bottom: 10px;
+    color: var(--azul-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.juego-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.juego-svg .pared {
+    fill: var(--azul-oscuro);
+    stroke: var(--azul);
+    stroke-width: 1.5;
+}
+
+.juego-svg .bit {
+    fill: var(--azul-claro);
+}
+
+@media (min-width: 1000px) {
+    .cabecera {
+        display: grid;
+        grid-template-columns: minmax(300px, 400px) 1fr;
+        column-gap: 40px;
+        align-items: start;
+    }
+
+    .juego {
+        grid-column: 1;
+        grid-row: 1 / span 3;
+        margin: 20px 0 0;
+    }
+
+    .frases-superiores,
+    .hero.contenedor,
+    .banda {
+        grid-column: 2;
+    }
+}
+
+/* Botón y ayuda del juego */
+.juego-barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.juego-boton {
+    min-height: 40px;
+    padding: 8px 18px;
+}
+
+.juego-ayuda {
+    color: var(--gris);
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+/* El chip CR */
+.juego-svg .chip {
+    transition: transform 0.16s linear;
+}
+
+.juego-svg .chip-cuerpo {
+    fill: var(--marron);
+    stroke: #e8c58b;
+    stroke-width: 1;
+}
+
+.juego-svg .chip-texto {
+    fill: var(--negro);
+    font: 800 9px sans-serif;
+}
+
+/* Marcador de bits */
+.juego-marcador {
+    margin-bottom: 8px;
+    color: var(--blanco);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+}
+
+/* Los bugs */
+.juego-svg .bug {
+    transition: transform 0.16s linear;
+}
+
+.juego-svg .bug-cuerpo {
+    fill: var(--crema, #F3EBDD);
+    stroke: var(--marron);
+    stroke-width: 1;
+}
+
+.juego-svg .bug-patas {
+    fill: none;
+    stroke: var(--crema, #F3EBDD);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+}
+
+.juego-svg .bug-ojo {
+    fill: var(--negro);
+}
+
+/* Línea donde el juego te habla */
+.juego-mensaje {
+    min-height: 1.4em;
+    margin-top: 10px;
+    color: var(--azul-claro);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: left;
+}
+/* Victoria: el panel brilla y aparece el enlace al contacto */
+.juego {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.juego-ganado {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 24px rgba(101, 185, 242, 0.45);
+}
+
+.juego-enlace {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--azul-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.juego-enlace[hidden] {
+    display: none;
+}   
+/* El tablero no hace scroll ni selecciona texto cuando deslizas el dedo */
+#tablero {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Si el sistema pide menos movimiento, el chip y los bugs saltan de casilla sin deslizarse */
+@media (prefers-reduced-motion: reduce) {
+    .juego-svg .chip,
+    .juego-svg .bug {
+        transition: none;
+    }
 }
