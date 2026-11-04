@@ -1,13 +1,15 @@
 // =========================================
 // MINI-JUEGO DEL CHIP (js/juego.js)
-// Paso 5: bugs enemigos y vidas
+// Paso 6: ganar, perder y volver a jugar
 // =========================================
 (function () {
     const tablero = document.getElementById("tablero");
     const boton = document.getElementById("juego-boton");
     const marcador = document.getElementById("marcador");
-    const mensaje = document.getElementById("mensaje");              // NUEVO
-    if (!tablero || !boton || !marcador || !mensaje) return;
+    const mensaje = document.getElementById("mensaje");
+    const enlace = document.getElementById("juego-enlace");       // NUEVO
+    if (!tablero || !boton || !marcador || !mensaje || !enlace) return;
+    const panel = tablero.closest(".juego");                       // NUEVO
 
     // El mapa del circuito. Cada letra es una casilla:
     // #  pared      .  bit      P  inicio del chip      B  inicio de un bug
@@ -30,7 +32,7 @@
     const FILAS = MAPA.length;        // 11
     const NS = "http://www.w3.org/2000/svg";
     const VELOCIDAD = 160;            // milisegundos entre un paso y el siguiente
-    const VIDAS_INICIO = 3;           // NUEVO: vidas al empezar
+    const VIDAS_INICIO = 3;           // vidas al empezar
 
     // Qué tecla mueve hacia dónde (x: derecha o izquierda, y: abajo o arriba)
     const TECLAS = {
@@ -44,7 +46,7 @@
         d:          { x: 1,  y: 0 }
     };
 
-    // NUEVO: las cuatro calles que puede tomar un bug en un cruce
+    // Las cuatro calles que puede tomar un bug en un cruce
     const DIRECCIONES = [
         { x: 0,  y: -1 },
         { x: 0,  y: 1 },
@@ -54,18 +56,19 @@
 
     // El estado del juego: lo que va cambiando mientras juegas
     const chip = { x: 1, y: 1 };           // casilla donde está el chip
-    const inicioChip = { x: 1, y: 1 };     // NUEVO: dónde empieza (para volver)
+    const inicioChip = { x: 1, y: 1 };     // dónde empieza (para volver)
     let direccion = { x: 0, y: 0 };        // hacia dónde va ahora
     let siguiente = null;                  // giro que el jugador ha pedido
     let reloj = null;                      // el temporizador que da los pasos
     let jugando = false;
+    let terminado = false;                 // NUEVO: ¿ha acabado la partida?
     let dibujoChip = null;                 // el dibujo del chip en el tablero
     const bits = {};                       // los bits que quedan, por casilla ("3,5")
     let total = 0;                         // cuántos bits hay en total
     let comidos = 0;                       // cuántos se ha comido ya
-    let vidas = VIDAS_INICIO;              // NUEVO: vidas que le quedan
-    let pasos = 0;                         // NUEVO: pasos que lleva la partida
-    const bugs = [];                       // NUEVO: la lista de bugs
+    let vidas = VIDAS_INICIO;              // vidas que le quedan
+    let pasos = 0;                         // pasos que lleva la partida
+    const bugs = [];                       // la lista de bugs
 
     // Busca dónde empiezan el chip (P) y los bugs (B)
     MAPA.forEach((fila, y) => {
@@ -75,7 +78,7 @@
                 chip.y = y;
                 inicioChip.x = x;
                 inicioChip.y = y;
-            } else if (letra === "B") {                              // NUEVO
+            } else if (letra === "B") {
                 bugs.push({
                     x: x, y: y,                // dónde está ahora
                     inicioX: x, inicioY: y,    // dónde empezó
@@ -103,7 +106,7 @@
                MAPA[y][x] === "#";
     }
 
-    // NUEVO: pone un dibujo (el chip o un bug) en su casilla
+    // Pone un dibujo (el chip o un bug) en su casilla
     function colocar(dibujo, x, y) {
         dibujo.style.transform = `translate(${x * CELDA}px, ${y * CELDA}px)`;
     }
@@ -122,10 +125,14 @@
             delete bits[clave];    // y lo borra de la lista
             comidos++;
             actualizarMarcador();
+
+            if (comidos === total) {   // NUEVO: ¿se los ha comido todos?
+                ganar();
+            }
         }
     }
 
-    // NUEVO: dibuja un bug (cuerpo, antenas, patas y ojos)
+    // Dibuja un bug (cuerpo, antenas, patas y ojos)
     function dibujarBug(svg, bug) {
         const grupo = crear("g", { class: "bug" });
         grupo.appendChild(crear("path", {
@@ -176,7 +183,7 @@
             });
         });
 
-        // NUEVO: los bugs (se dibujan antes que el chip, para que el chip quede encima)
+        // Los bugs (se dibujan antes que el chip, para que el chip quede encima)
         bugs.forEach((bug) => dibujarBug(svg, bug));
 
         // El chip: un cuadradito con las letras CR
@@ -206,12 +213,12 @@
         actualizarMarcador();
     }
 
-    // NUEVO: lo lejos que está una casilla del chip (contando casillas, sin diagonales)
+    // Lo lejos que está una casilla del chip (contando casillas, sin diagonales)
     function distancia(x, y) {
         return Math.abs(x - chip.x) + Math.abs(y - chip.y);
     }
 
-    // NUEVO: un bug da un paso por el circuito
+    // Un bug da un paso por el circuito
     function moverBug(bug) {
         // Las calles por las que puede ir (las que no tienen pared)
         const libres = DIRECCIONES.filter(
@@ -242,7 +249,7 @@
         bug.y += elegida.y;
     }
 
-    // NUEVO: ¿este bug ha tocado al chip? (misma casilla, o se han cruzado de frente)
+    // ¿Este bug ha tocado al chip? (misma casilla, o se han cruzado de frente)
     function chocan(bug, antes) {
         const mismaCasilla = bug.x === chip.x && bug.y === chip.y;
         const seCruzan =
@@ -251,7 +258,7 @@
         return mismaCasilla || seCruzan;
     }
 
-    // NUEVO: todos a su casilla de salida
+    // Todos a su casilla de salida
     function volverAlInicio() {
         chip.x = inicioChip.x;
         chip.y = inicioChip.y;
@@ -270,13 +277,13 @@
         });
     }
 
-    // NUEVO: un bug ha pillado al chip
+    // Un bug ha pillado al chip
     function perderVida() {
         vidas--;
         actualizarMarcador();
 
         if (vidas === 0) {
-            terminar("¡Los bugs ganan! Recarga la página para intentarlo otra vez.");
+            terminar("¡Los bugs ganan! Esta vez no ha compilado.", false);   // NUEVO: segundo dato
             return;
         }
 
@@ -286,17 +293,44 @@
         mensaje.textContent = `¡Un bug te ha pillado! Te quedan ${quedan}. Pulsa Seguir.`;
     }
 
-    // NUEVO: se acabó la partida
-    function terminar(texto) {
+    // NUEVO: el chip se ha comido todos los bits
+    function ganar() {
+        terminar(`¡Compilado sin errores! Te has comido los ${total} bits.`, true);
+    }
+
+    // Se acabó la partida (gano = true si has ganado)
+    function terminar(texto, gano) {
         pausar();
-        boton.disabled = true;
-        boton.textContent = "Fin";
+        terminado = true;                          // NUEVO
+        boton.textContent = "Jugar otra vez";      // NUEVO
         mensaje.textContent = texto;
+        enlace.hidden = !gano;                     // NUEVO: el enlace solo si has ganado
+        panel.classList.toggle("juego-ganado", gano);   // NUEVO: el panel brilla si ganas
+    }
+
+    // NUEVO: deja el juego como el primer día para empezar de cero
+    function reiniciar() {
+        tablero.innerHTML = "";                    // quita el dibujo viejo
+        for (const clave in bits) {
+            delete bits[clave];                    // vacía la lista de bits
+        }
+        total = 0;
+        comidos = 0;
+        vidas = VIDAS_INICIO;
+        pasos = 0;
+        terminado = false;
+
+        dibujarTablero();                          // dibuja el tablero con todos los bits
+        volverAlInicio();                          // chip y bugs a su sitio
+
+        mensaje.textContent = "";
+        enlace.hidden = true;
+        panel.classList.remove("juego-ganado");
     }
 
     // Un paso del juego: se repite cada 160 milisegundos mientras juegas
     function paso() {
-        const antes = { x: chip.x, y: chip.y };   // NUEVO: dónde estaba el chip
+        const antes = { x: chip.x, y: chip.y };   // dónde estaba el chip
 
         // 1. Si el jugador pidió un giro y no hay pared, gira
         if (siguiente && !esPared(chip.x + siguiente.x, chip.y + siguiente.y)) {
@@ -314,7 +348,10 @@
             comer();
         }
 
-        // 3. NUEVO: los bugs se mueven (van más lentos: se quedan quietos 1 de cada 3 pasos)
+        // NUEVO: si al comer ha ganado, la partida ya terminó y no se sigue
+        if (!jugando) return;
+
+        // 3. Los bugs se mueven (van más lentos: se quedan quietos 1 de cada 3 pasos)
         pasos++;
         bugs.forEach((bug) => {
             bug.antesX = bug.x;
@@ -325,7 +362,7 @@
         }
         bugs.forEach((bug) => colocar(bug.dibujo, bug.x, bug.y));
 
-        // 4. NUEVO: ¿algún bug ha tocado al chip?
+        // 4. ¿Algún bug ha tocado al chip?
         if (bugs.some((bug) => chocan(bug, antes))) {
             perderVida();
         }
@@ -335,7 +372,7 @@
         jugando = true;
         reloj = setInterval(paso, VELOCIDAD);
         boton.textContent = "Pausa";
-        mensaje.textContent = "";   // NUEVO: borra el mensaje anterior
+        mensaje.textContent = "";
     }
 
     function pausar() {
@@ -346,7 +383,10 @@
     }
 
     boton.addEventListener("click", () => {
-        if (jugando) {
+        if (terminado) {          // NUEVO: si acabó la partida, empieza otra
+            reiniciar();
+            empezar();
+        } else if (jugando) {
             pausar();
         } else {
             empezar();

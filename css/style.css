@@ -1205,3 +1205,24 @@ header h1 {
     font-weight: 600;
     text-align: left;
 }
+/* Victoria: el panel brilla y aparece el enlace al contacto */
+.juego {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.juego-ganado {
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 24px rgba(101, 185, 242, 0.45);
+}
+
+.juego-enlace {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--azul-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.juego-enlace[hidden] {
+    display: none;
+}
