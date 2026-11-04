@@ -1225,4 +1225,18 @@ header h1 {
 
 .juego-enlace[hidden] {
     display: none;
+}   
+/* El tablero no hace scroll ni selecciona texto cuando deslizas el dedo */
+#tablero {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Si el sistema pide menos movimiento, el chip y los bugs saltan de casilla sin deslizarse */
+@media (prefers-reduced-motion: reduce) {
+    .juego-svg .chip,
+    .juego-svg .bug {
+        transition: none;
+    }
 }

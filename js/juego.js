@@ -409,6 +409,53 @@
         evento.preventDefault();   // que la página no baje al pulsar una flecha
         siguiente = nueva;
     });
+        
+     // Móvil: deslizar el dedo (o arrastrar con el ratón) sobre el tablero cambia la dirección
+    let inicioToque = null;   // dónde empezó el deslizamiento
 
+    tablero.addEventListener("pointerdown", (evento) => {
+        inicioToque = { x: evento.clientX, y: evento.clientY };
+        tablero.setPointerCapture(evento.pointerId);   // sigue el dedo aunque se salga del tablero
+    });
+
+    tablero.addEventListener("pointermove", (evento) => {
+        if (!inicioToque || !jugando) return;
+
+        const dx = evento.clientX - inicioToque.x;   // cuánto se ha movido hacia los lados
+        const dy = evento.clientY - inicioToque.y;   // y hacia arriba o abajo
+
+        // Si se ha movido muy poco, todavía no es un deslizamiento
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+
+        // Gana el eje en el que más se ha movido
+        if (Math.abs(dx) > Math.abs(dy)) {
+            siguiente = dx > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 };
+        } else {
+            siguiente = dy > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 };
+        }
+
+        // Nuevo punto de partida: así se pueden encadenar giros sin levantar el dedo
+        inicioToque = { x: evento.clientX, y: evento.clientY };
+    });
+
+    tablero.addEventListener("pointerup", () => { inicioToque = null; });
+    tablero.addEventListener("pointercancel", () => { inicioToque = null; });
+
+    // Pausa automática: si cambias de pestaña, el juego se para
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden && jugando) {
+            pausar();
+        }
+    });
+
+    // Pausa automática: si el tablero sale de la pantalla, el juego se para
+    if ("IntersectionObserver" in window) {
+        const vigilante = new IntersectionObserver((entradas) => {
+            if (!entradas[0].isIntersecting && jugando) {
+                pausar();
+            }
+        }, { threshold: 0.3 });
+        vigilante.observe(panel);
+    }
     dibujarTablero();
 })();
