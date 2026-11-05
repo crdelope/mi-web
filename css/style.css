@@ -1204,3 +1204,115 @@ header h1 {
         transition: none;
     }
 }
+/* =========================================================
+   MODO OSCURO
+   Se activa cuando <html> lleva data-tema="oscuro".
+   La cabecera, el pie, el juego y la intro ya son oscuros.
+   ========================================================= */
+html[data-tema="oscuro"] {
+    color-scheme: dark;   /* barras de scroll y controles también en oscuro */
+}
+
+html[data-tema="oscuro"] body {
+    background-color: #0d1722;
+    color: #e6edf3;
+}
+
+/* Títulos */
+html[data-tema="oscuro"] section h2,
+html[data-tema="oscuro"] section h3,
+html[data-tema="oscuro"] .sobre-texto .texto-destacado,
+html[data-tema="oscuro"] .ficha-cabecera {
+    color: var(--azul-claro);
+}
+
+/* Texto normal */
+html[data-tema="oscuro"] .sobre-texto p:not(.texto-destacado),
+html[data-tema="oscuro"] .datos dd {
+    color: #d3dee8;
+}
+
+/* Texto secundario */
+html[data-tema="oscuro"] .tarjeta p,
+html[data-tema="oscuro"] .gusto p,
+html[data-tema="oscuro"] .datos dt,
+html[data-tema="oscuro"] .ficha-pie {
+    color: #9fb3c6;
+}
+
+/* Tarjetas y ficha: de blanco a azul oscuro */
+html[data-tema="oscuro"] .tarjeta,
+html[data-tema="oscuro"] .gusto,
+html[data-tema="oscuro"] .lista-gustos li,
+html[data-tema="oscuro"] .ficha {
+    background-color: var(--azul-oscuro);
+}
+
+/* Enlaces (menos los botones, que ya tienen su propio color) */
+html[data-tema="oscuro"] main a:not(.boton) {
+    color: var(--azul-claro);
+}
+
+html[data-tema="oscuro"] main a:not(.boton):hover {
+    color: var(--marron);
+}
+
+/* Líneas de separación */
+html[data-tema="oscuro"] section + section {
+    border-top-color: rgba(214, 222, 229, 0.15);
+}
+
+html[data-tema="oscuro"] .ficha-cabecera,
+html[data-tema="oscuro"] .datos > div {
+    border-bottom-color: rgba(214, 222, 229, 0.15);
+}
+
+html[data-tema="oscuro"] .ficha-pie {
+    border-top-color: rgba(214, 222, 229, 0.15);
+}
+/* =========================================================
+   BOTÓN DEL MODO OSCURO
+   Es un <button>, pero tiene que parecer un enlace más del menú.
+   ========================================================= */
+.navegacion .tema-boton {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 0;
+    padding: 12px 14px;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transform: none;
+}
+
+.navegacion .tema-boton:hover {
+    background-color: #24558a;
+    transform: none;
+}
+
+/* Luna en modo claro, sol en modo oscuro */
+.navegacion .icono-sol {
+    display: none;
+}
+
+html[data-tema="oscuro"] .navegacion .icono-luna {
+    display: none;
+}
+
+html[data-tema="oscuro"] .navegacion .icono-sol {
+    display: block;
+}
+
+/* En la barra lateral el icono queda alineado con los demás */
+@media (min-width: 701px) {
+    .navegacion .tema-boton {
+        padding: 12px;
+    }
+}
