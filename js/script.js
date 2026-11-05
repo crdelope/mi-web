@@ -154,4 +154,35 @@ document.addEventListener("DOMContentLoaded", () => {
         anio.textContent = new Date().getFullYear();
     }
 
+      // 4. MODO OSCURO (botón de la barra lateral)
+
+    const botonTema = document.querySelector("#boton-tema");
+
+    if (botonTema) {
+        const raiz = document.documentElement;   // la etiqueta <html>
+
+        // Marca el botón como "pulsado" si el modo oscuro está activado
+        const marcarBoton = () => {
+            const oscuro = raiz.dataset.tema === "oscuro";
+            botonTema.setAttribute("aria-pressed", String(oscuro));
+        };
+
+        // Al cargar, refleja el tema que ya puso el script del <head>
+        marcarBoton();
+
+        botonTema.addEventListener("click", () => {
+            // Si estaba oscuro pasa a claro, y al revés
+            const nuevo = raiz.dataset.tema === "oscuro" ? "claro" : "oscuro";
+            raiz.dataset.tema = nuevo;
+            marcarBoton();
+
+            try {
+                // La libretita del navegador: se acuerda aunque cierres todo
+                localStorage.setItem("tema", nuevo);
+            } catch (e) {
+                // Si el navegador no deja guardar, el cambio vale solo para esta visita
+            }
+        });
+    }
+
 });
