@@ -13,6 +13,18 @@
         document.documentElement.classList.add("sin-intro");
     }
 </script>
+ <script>
+    // Tema de color: el que eligió el visitante o, si no eligió, el de su sistema
+    try {
+        const guardado = localStorage.getItem("tema");
+        const oscuro = guardado
+            ? guardado === "oscuro"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.tema = oscuro ? "oscuro" : "claro";
+    } catch (e) {
+        document.documentElement.dataset.tema = "claro";
+    }
+    </script>
 <noscript><style>#intro { display: none !important; }</style></noscript>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Carlos Ruiz: electrónica, desarrollo de software, tecnología y aventuras.">
