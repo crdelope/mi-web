@@ -1270,3 +1270,49 @@ html[data-tema="oscuro"] .datos > div {
 html[data-tema="oscuro"] .ficha-pie {
     border-top-color: rgba(214, 222, 229, 0.15);
 }
+/* =========================================================
+   BOTÓN DEL MODO OSCURO
+   Es un <button>, pero tiene que parecer un enlace más del menú.
+   ========================================================= */
+.navegacion .tema-boton {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-height: 0;
+    padding: 12px 14px;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transform: none;
+}
+
+.navegacion .tema-boton:hover {
+    background-color: #24558a;
+    transform: none;
+}
+
+/* Luna en modo claro, sol en modo oscuro */
+.navegacion .icono-sol {
+    display: none;
+}
+
+html[data-tema="oscuro"] .navegacion .icono-luna {
+    display: none;
+}
+
+html[data-tema="oscuro"] .navegacion .icono-sol {
+    display: block;
+}
+
+/* En la barra lateral el icono queda alineado con los demás */
+@media (min-width: 701px) {
+    .navegacion .tema-boton {
+        padding: 12px;
+    }
+}
