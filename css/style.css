@@ -1316,3 +1316,28 @@ html[data-tema="oscuro"] .navegacion .icono-sol {
         padding: 12px;
     }
 }
+/* FORMULARIO DE CONTACTO */
+.formulario { display: grid; gap: 0.5rem; margin-top: 1.2rem; max-width: 26rem; }
+.formulario label { font-size: 0.9rem; color: var(--crema); }
+.formulario input:not([type="hidden"]):not(.trampa),
+.formulario textarea {
+    font: inherit;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--azul-claro);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--blanco);
+}
+.formulario input:focus-visible,
+.formulario textarea:focus-visible { outline: 3px solid var(--azul-claro); outline-offset: 2px; }
+.formulario-boton {
+    margin-top: 0.5rem; padding: 0.7rem 1rem; border: 0; border-radius: 8px;
+    background: var(--azul); color: var(--blanco); font: inherit; font-weight: 600; cursor: pointer;
+}
+.formulario-boton:hover { background: var(--azul-claro); color: var(--azul-oscuro); }
+.formulario-boton:disabled { opacity: 0.6; cursor: wait; }
+.formulario-estado { min-height: 1.4em; margin: 0; }
+.formulario-estado.ok { color: #8fe3a1; }
+.formulario-estado.error { color: #ffb3a7; }
+.formulario-nota { font-size: 0.8rem; margin: 0; opacity: 0.8; }
+.trampa { position: absolute; left: -9999px; }
