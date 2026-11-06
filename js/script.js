@@ -184,5 +184,39 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    // 5. FORMULARIO DE CONTACTO
+const formulario = document.querySelector("#formulario");
+if (formulario) {
+    const estado = document.querySelector("#f-estado");
+    const botonEnviar = document.querySelector("#f-enviar");
+
+    formulario.addEventListener("submit", async (evento) => {
+        evento.preventDefault();               // frena el envío normal
+        botonEnviar.disabled = true;           // evita pulsar dos veces
+        estado.className = "formulario-estado";
+        estado.textContent = "Enviando…";
+
+        try {
+            const respuesta = await fetch(formulario.action, {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: new FormData(formulario)
+            });
+            const datos = await respuesta.json();
+            if (respuesta.ok && datos.success) {
+                estado.textContent = "¡Enviado! Te contesto lo antes posible.";
+                estado.classList.add("ok");
+                formulario.reset();
+            } else {
+                throw new Error(datos.message);
+            }
+        } catch (error) {
+            estado.textContent = "No se pudo enviar. Prueba de nuevo o escríbeme por e-mail.";
+            estado.classList.add("error");
+        } finally {
+            botonEnviar.disabled = false;
+        }
+    });
+}
 
 });
